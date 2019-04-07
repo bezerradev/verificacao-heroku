@@ -23,7 +23,7 @@ app.config['MAIL_PASSWORD'] = os.environ.get('EMAIL_PASSWORD')
 app.config['MAIL_USE_TLS'] = False
 app.config['MAIL_USE_SSL'] = True
 mail = Mail(app)
-app.secret_key = os.urandom(24)
+app.secret_key = 'MINHAKEYALEATORIA'
 
 def _gerar_codigo():
   # exemplos de codigos gerados por essa função: A2C5D6, H1C6Z2
