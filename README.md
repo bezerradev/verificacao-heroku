@@ -11,4 +11,4 @@
 3. `pip3 -r requirements.txt`
 4. `python3 app.py`
 
-- obs1: Em caso de adicionar alguma bibliotec, autualizar os requirements.txt: `pip3 freeze > requirements.txt`
+- OBS: Em caso de adicionar alguma dependência, autualizar os requirements.txt: `pip3 freeze > requirements.txt`
