@@ -58,6 +58,10 @@ def index():
 @app.route('/confirmar', methods=['GET', 'POST'])
 def confirmar():
   nome = (session['nome'])
+
+  if nome == None or nome == "":
+    redirect('/')
+
   cpf_cnpj = session['cpf_cnpj']
   email = session['email']
 
