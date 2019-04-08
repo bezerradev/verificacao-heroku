@@ -13,6 +13,8 @@ from gerador_certidao import gerar_certidao
 import random
 import string
 import os
+from datetime import datetime
+import pytz
 
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = './temp_pdf/'
@@ -46,20 +48,18 @@ def index():
       session['nome'] = request.form.get('nomeRazaoSocial')
       session['cpf_cnpj'] = request.form.get('cpfCnpj') 
       session['email'] = request.form.get('email')
-      enviar_email(nome=request.form.get('nome'), email=request.form.get('email'))
+      enviar_email(nome=request.form.get('nomeRazaoSocial'), email=request.form.get('email'), codigo=codigo)
 
       return redirect('/confirmar')
     else:
       return render_template('index.html')
 
-def enviar_email(nome='', email=''):
-    # msg = Message("TRT - Código de Verificação", sender = "apenasparatestar3@gmail.com")
-    # msg.add_recipient(email)
-    # msg.html = "Caro " + session["nome"] +  ", aqui está seu código de confirmação: <b>" + codigo + "</b>"
-    # msg.html = render_template('email.html', nome=nome, email=email)
-    # msg.tht
-    # mail.send(msg)
-     
+def enviar_email(nome='', email='', codigo=''):
+    msg = Message("TRT - Código de Verificação", sender = "apenasparatestar3@gmail.com")
+    msg.add_recipient(email)
+    msg.html = render_template('email.html', nome=nome, email=email, codigo=codigo, data = datetime.now(pytz.timezone('America/Recife')).strftime("%d/%m/%Y - %H:%M"))
+    mail.send(msg)
+    #return render_template('email.html', nome=nome, codigo=codigo)     
 
 
 @app.route('/confirmar', methods=['GET', 'POST'])
