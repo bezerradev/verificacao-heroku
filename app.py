@@ -46,14 +46,21 @@ def index():
       session['nome'] = request.form.get('nomeRazaoSocial')
       session['cpf_cnpj'] = request.form.get('cpfCnpj') 
       session['email'] = request.form.get('email')
+      enviar_email(nome=request.form.get('nome'), email=request.form.get('email'))
 
-      msg = Message("TRT - Código de Verificação", sender = "apenasparatestar3@gmail.com")
-      msg.add_recipient(request.form.get('email'))
-      msg.html = "Caro " + session["nome"] +  ", aqui está seu código de confirmação: <b>" + codigo + "</b>"
-      mail.send(msg)
       return redirect('/confirmar')
     else:
       return render_template('index.html')
+
+def enviar_email(nome='', email=''):
+    # msg = Message("TRT - Código de Verificação", sender = "apenasparatestar3@gmail.com")
+    # msg.add_recipient(email)
+    # msg.html = "Caro " + session["nome"] +  ", aqui está seu código de confirmação: <b>" + codigo + "</b>"
+    # msg.html = render_template('email.html', nome=nome, email=email)
+    # msg.tht
+    # mail.send(msg)
+     
+
 
 @app.route('/confirmar', methods=['GET', 'POST'])
 def confirmar():
