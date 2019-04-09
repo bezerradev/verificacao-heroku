@@ -16,7 +16,7 @@ def gerar_certidao(nome='', cpf_cnpj=''):
   for i in range(2):
     pdf.cell(200, 10, txt="", ln=1)
 
-  pdf.multi_cell(200, 10, txt="Sr(a). " + nome + ", "+cpf_cnpj+", está sem dívidas na justiça do trabalho. E AI MEU AMIGO, QUAL A BOA DESSA PORRA? TOMAR BOMBA E PA FICAR GRANDE! USAVA DIFERENTE, SABE PORQUE? USA HTML CRIAVA ASSIM N EU QUABRAVA NUM HTML ", align="L")
+  pdf.multi_cell(200, 10, txt="Sr(a). " + nome + ", "+cpf_cnpj+", está sem dívidas na justiça do trabalho.", align="L")
   pdf.cell(200, 10, txt=data, ln=1, align="R")
 
   pdf.output('./temp_pdf/' + nome_arquivo)
