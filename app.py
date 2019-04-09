@@ -48,7 +48,7 @@ def index():
       session['nome'] = request.form.get('nomeRazaoSocial')
       session['cpf_cnpj'] = request.form.get('cpfCnpj') 
       session['email'] = request.form.get('email')
-      enviar_email(nome=request.form.get('nomeRazaoSocial'), email=request.form.get('email'), codigo=codigo)
+      enviar_email(nome=request.form.get('nomeRazaoSocial'), email=request.form.get('email'), codigo=codigo, cpf=request.form.get('cpfCnpj'))
 
       return redirect('/confirmar')
     else:
@@ -57,7 +57,7 @@ def index():
 def enviar_email(nome='', email='', codigo=''):
     msg = Message("TRT - Código de Verificação", sender = "apenasparatestar3@gmail.com")
     msg.add_recipient(email)
-    msg.html = render_template('email.html', nome=nome, email=email, codigo=codigo, data = datetime.now(pytz.timezone('America/Recife')).strftime("%d/%m/%Y - %H:%M"))
+    msg.html = render_template('email.html', nome=nome, email=email, codigo=codigo, cpf=cpf, data = datetime.now(pytz.timezone('America/Recife')).strftime("%d/%m/%Y - %H:%M"))
     mail.send(msg)
     #return render_template('email.html', nome=nome, codigo=codigo)     
 
