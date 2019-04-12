@@ -58,17 +58,11 @@ def enviar_email(nome='', email='', codigo='', cpf=''):
     msg = Message("TRT - Código de Verificação", sender = "apenasparatestar3@gmail.com")
     msg.add_recipient(email)
     msg.html = render_template('email.html', nome=nome, email=email, codigo=codigo, cpf=cpf, data = datetime.now(pytz.timezone('America/Recife')).strftime("%d/%m/%Y"))
-    mail.send(msg)
-    #return render_template('email.html', nome=nome, codigo=codigo)     
-
+    mail.send(msg)    
 
 @app.route('/confirmar', methods=['GET', 'POST'])
 def confirmar():
-  nome = (session['nome'])
-
-  if nome == None or nome == "":
-    redirect('/')
-
+  nome = session['nome']
   cpf_cnpj = session['cpf_cnpj']
   email = session['email']
 
