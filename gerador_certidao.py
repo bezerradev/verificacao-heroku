@@ -5,8 +5,7 @@ from datetime import timedelta
 import pytz
 
 def gerar_certidao(nome='', cpf_cnpj=''):
-  #nome_arquivo = str(uuid.uuid4()) + '.pdf'
-  nome_arquivo = "teste.pdf"
+  nome_arquivo = str(uuid.uuid4()) + '.pdf'
   data = datetime.now(pytz.timezone('America/Recife'))
   dataNRed = data.strftime("%d/%m/%Y, %H:%M")
   dataRed = data.strftime("%d %B, %Y")
@@ -15,17 +14,6 @@ def gerar_certidao(nome='', cpf_cnpj=''):
   
   pdf = FPDF()
   pdf.add_page()
-  #pdf.set_font("Arial", size=18)
-  #pdf.cell(200, 10, txt="CERTIDÃO DE QUITAÇÃO DO TRT", ln=1, align="C")
-  #pdf.set_font("Arial", size=10)
-
-  #for i in range(2):
-  #  pdf.cell(200, 10, txt="", ln=1)
-
-  #pdf.multi_cell(200, 10, txt="Sr(a). " + nome + ", "+cpf_cnpj+", está sem dívidas na justiça do trabalho.", align="L")
-  #pdf.cell(200, 10, txt=data, ln=1, align="R")
-
-  #Gerando PDF no padrão enviado pelo Gileno
   pdf.set_font("Arial", size=12)
   pdf.cell(200, 5, txt="PODER JUDICIÁRIO", align="C", ln=1)
   pdf.cell(200, 5, txt="JUSTIÇA DO TRABALHO", align="C", ln=1)
